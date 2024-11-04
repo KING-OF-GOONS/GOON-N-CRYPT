@@ -153,9 +153,10 @@
         // Global object to track destroyed message-passkey combinations
         const destroyedCombinations = {};
 
-        // Function to generate a unique ID based on the message and passkey
+        // Function to generate a unique ID based on the message, passkey, and a timestamp or random salt
         function generateUniqueId(message, passkey) {
-            return CryptoJS.SHA256(message + passkey).toString();
+            const salt = Date.now().toString(); // You can also use a random string if preferred
+            return CryptoJS.SHA256(message + passkey + salt).toString();
         }
 
         // Function to encrypt a message using AES
@@ -242,10 +243,11 @@
 
             // Show the "I'LL GET YOU GADGET!!!" alert after data destruction
             setTimeout(function () {
-                alert("I'LL GET YOU GADGET!!!");
+                alert("THIS MESSAGE HAS SELF DESTRUCTED!!!");
             }, 100);
         });
     </script>
 </body>
 
 </html>
+
